@@ -40,7 +40,6 @@ module.exports = {
     });
   },
   login: (req, res) => {
-    console.log("hit");
     const body = req.body;
     //console.log(JSON.stringify(req.body.email));
     getUserByUserEmail(body.email, (err, results) => {
@@ -55,13 +54,9 @@ module.exports = {
         //});
       }
       else{
-        console.log(results.firstName);
-
+  
     const result = compareSync(body.password, results.password);
 
-
-  console.log(results.lastName);
-      
       if (result) {
         //results.password = undefined;
         //const jsontoken = sign({ result: results }, "qwe1234", {
