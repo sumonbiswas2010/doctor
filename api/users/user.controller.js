@@ -8,7 +8,7 @@ const {
   getDoc,
   getDocByID
 } = require("./user.service");
-const { hashSync, genSaltSync, compareSync } = require("bcrypt");
+const { hashSync, genSaltSync, compareSync } = require("bcrypt-nodejs");
 //const { sign } = require("jsonwebtoken");
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
     const body = req.body;
     //console.log("Starting" +body);
     //const body = {
-     //first_name: "Sumona",
+     //first_name: "Sumon",
       //last_name: "Biswas",
       //gender: "Male",
       //email: "tetsdgfg@dg.dfcom",
