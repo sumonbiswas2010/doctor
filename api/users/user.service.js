@@ -23,6 +23,7 @@ module.exports = {
     );
   },
   getUserByUserEmail: (email, callBack) => {
+    
     pool.query(
       `select * from registration where email = ?`,
       [email],

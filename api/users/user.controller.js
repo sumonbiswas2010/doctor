@@ -8,7 +8,7 @@ const {
   getDoc,
   getDocByID
 } = require("./user.service");
-const { hashSync, genSaltSync, compareSync } = require("bcrypt-nodejs");
+const { hashSync, genSaltSync, compareSync } = require("bcryptjs");
 //const { sign } = require("jsonwebtoken");
 
 module.exports = {
@@ -23,8 +23,8 @@ module.exports = {
       //password:"ok",
       //number: "067123"
   //};
-    const salt = genSaltSync(10);
-    body.password = hashSync(body.password, salt);
+
+    body.password = bcrypt.hashSync(body.password)
     create(body, (err, results) => {
       if (err) {
         console.log(err);
@@ -40,7 +40,7 @@ module.exports = {
     });
   },
   login: (req, res) => {
-    //console.log("hit");
+    console.log("hit");
     const body = req.body;
     //console.log(JSON.stringify(req.body.email));
     getUserByUserEmail(body.email, (err, results) => {
@@ -55,7 +55,12 @@ module.exports = {
         //});
       }
       else{
-      const result = compareSync(body.password, results.password);
+        console.log(results.firstName);
+
+    const result = compareSync(body.password, results.password);
+
+
+  console.log(results.lastName);
       
       if (result) {
         //results.password = undefined;
