@@ -18,27 +18,24 @@ module.exports = {
     const body = req.body;
     //console.log("Starting" +body);
 
-    
-
 
     getUserByUserEmail(body.email, (err, results) => {
-      getUserByPhone(body.number, (err, results) => {
-        console.log("called")
-        if(results)
-        {
-          return res.status(401).send();
-        }
-        else
-        {
-      
-      
       if(results)
       {
         return res.status(400).send();
+        process.exit(0);
       }
       else
       {
-        var salt = bcrypt.genSaltSync(10);
+        getUserByPhone(body.number, (err, results) => {
+          //console.log("called")
+          if(results)
+          {
+            return res.status(401).send();
+          }
+          else
+          {
+            var salt = bcrypt.genSaltSync(10);
         body.password = bcrypt.hashSync(body.password, salt);
         create(body, (err, results) => {
           if (err) {
@@ -53,9 +50,10 @@ module.exports = {
             data: results
           });
         });
+          }
+        });
+        
       }
-    }
-    });
     });
 
 
