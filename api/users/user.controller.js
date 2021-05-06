@@ -9,6 +9,7 @@ const {
   getDocByID
 } = require("./user.service");
 const { hashSync, genSaltSync, compareSync, bcrypt } = require("bcryptjs");
+//var bcrypt = require('bcryptjs');
 //const { sign } = require("jsonwebtoken");
 
 module.exports = {
@@ -24,7 +25,8 @@ module.exports = {
       //number: "067123"
   //};
 
-    body.password = bcrypt.hashSync(body.password)
+    var salt = bcrypt.genSaltSync(10);
+    body.password = bcrypt.hashSync(body.password, salt);
     create(body, (err, results) => {
       if (err) {
         console.log(err);
