@@ -35,7 +35,22 @@ module.exports = {
       }
     );
   },
- 
+
+  getUserByPhone: (phone, callBack) => {
+    pool.query(
+      `select * from registration where number = ?`,
+      [phone],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+          //return;
+        }
+        return callBack(null, results[0]);
+      }
+    );
+  },
+  
+
   getUserByUserId: (id, callBack) => {
     pool.query(
       `select id,firstName,lastName,gender,email,number from registration where id = ?`,

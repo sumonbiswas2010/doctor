@@ -6,7 +6,8 @@ const {
   updateUser,
   deleteUser,
   getDoc,
-  getDocByID
+  getDocByID,
+  getUserByPhone
 } = require("./user.service");
 const { hashSync, compareSync } = require("bcryptjs");
 var bcrypt = require('bcryptjs');
@@ -16,10 +17,24 @@ module.exports = {
   createUser: (req, res) => {
     const body = req.body;
     //console.log("Starting" +body);
+
+    
+
+
     getUserByUserEmail(body.email, (err, results) => {
+      getUserByPhone(body.number, (err, results) => {
+        console.log("called")
+        if(results)
+        {
+          return res.status(401).send();
+        }
+        else
+        {
+      
+      
       if(results)
       {
-        res.status(400).send();
+        return res.status(400).send();
       }
       else
       {
@@ -39,6 +54,8 @@ module.exports = {
           });
         });
       }
+    }
+    });
     });
 
 
