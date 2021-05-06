@@ -25,8 +25,8 @@ module.exports = {
       //number: "067123"
   //};
 
-    var salt = bcryptjs.genSaltSync(10);
-    body.password = bcryptjs.hashSync(body.password, salt);
+    var salt = bcrypt.genSaltSync(10);
+    body.password = bcrypt.hashSync(body.password, salt);
     create(body, (err, results) => {
       if (err) {
         console.log(err);
