@@ -8,8 +8,8 @@ const {
   getDoc,
   getDocByID
 } = require("./user.service");
-const { hashSync, compareSync, genSaltSync, bcrypt } = require("bcryptjs");
-//var bcrypt = require('bcryptjs');
+const { hashSync, compareSync } = require("bcryptjs");
+var bcrypt = require('bcryptjs');
 //const { sign } = require("jsonwebtoken");
 
 module.exports = {
