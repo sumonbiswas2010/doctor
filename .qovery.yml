@@ -1,0 +1,11 @@
+---
+application:
+  name: "doctor"
+  project: "doctor-server"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-doctor"
+  routes:
+  - application_name: "doctor"
+    paths:
+    - "/*"
